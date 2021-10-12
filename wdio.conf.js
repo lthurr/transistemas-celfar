@@ -1,4 +1,7 @@
+var argv = require('minimist')(process.argv.slice(2));
+
 exports.config = {
+
     specs: [
         './test/specs/**/*.js'
     ],
@@ -13,7 +16,7 @@ exports.config = {
     }],
     logLevel: 'warn',
     bail: 0,
-    baseUrl: 'https://nahual.github.io/qc-celfar',
+    baseUrl: 'https://nahual.github.io/qc-celfar' + (argv['v']? '/?v=' + argv['v']: '' || ''),
     waitforTimeout: 10000,
     connectionRetryTimeout: 120000,
     connectionRetryCount: 3,
@@ -58,8 +61,9 @@ exports.config = {
      * @param {Array.<String>} specs List of spec file paths that are to be run
      * @param {String} cid worker id (e.g. 0-0)
      */
-    // beforeSession: function (config, capabilities, specs, cid) {
-    // },
+     beforeSession: function (config, capabilities, specs) {
+        console.log(`- Running against: ${config.baseUrl}`);
+    },
     /**
      * Gets executed before test execution begins. At this point you can access to all global
      * variables like `browser`. It is the perfect place to define custom commands.
