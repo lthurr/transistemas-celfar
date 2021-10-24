@@ -3,20 +3,20 @@ const CelFarPage = require('../pageobjects/celfar.page');
 describe('Aplicacion CelFar', () => {
     let examples;
 
-    it('Titulo de la página', async () => {
+    it('Título de la página', async () => {
         await CelFarPage.open();
 
         await expect(browser).toHaveTitleContaining("CelFar");
     });
 
-    it('Titulo y descripcion de la apicación', async () => {
+    it('Título y descripción de la aplicación', async () => {
         await CelFarPage.open();
 
         await expect(await CelFarPage.title.getText()).toBe("CelFar");
         await expect(await CelFarPage.description.getText()).toBe("Conversor de temperaturas entre grados Celsius y Fahrenheit");
     });
 
-    it('Links en la descripcion de la apicación', async () => {
+    it('Links en la descripción de la aplicación', async () => {
         await CelFarPage.open();
 
         await expect(await CelFarPage.getLinksInDescription())
@@ -24,7 +24,7 @@ describe('Aplicacion CelFar', () => {
     });
 
     describe('Estado Inicial', () => {
-        it('Campo numerico deberia estar vacío y pendiente de calculo', async () => {
+        it('Campo numérico debería estar vacío y mencionar \'pendiente de cálculo\'', async () => {
             await CelFarPage.open();
 
             await expect(await CelFarPage.input.getText()).toBe('');
@@ -47,9 +47,9 @@ describe('Aplicacion CelFar', () => {
         ]
 
         examples.forEach(({input, output }) => { 
-            it('El valor ingresado debería ser transformado a F', async () => {
+            it(`El valor \'${input}\' debería ser convertido a \'${output}\' F`, async () => {
                 await CelFarPage.open();
-                await CelFarPage.convert(input)
+                await CelFarPage.convert(input);
 
                 await expect(await CelFarPage.output.getText()).toBe(output);
             });
@@ -59,7 +59,7 @@ describe('Aplicacion CelFar', () => {
     describe('(Valor menor a -273)', () => {
         it('Deberia informar que está bajo el cero absoluto', async () => {
             await CelFarPage.open();
-            await CelFarPage.convert("-274")
+            await CelFarPage.convert("-274");
 
             await expect(await CelFarPage.output.getText()).toBe("El valor ingresado está debajo del 0 absoluto");
             await expect(await CelFarPage.getLinksInOutput()).toStrictEqual(["http://es.wikipedia.org/wiki/Cero_absoluto"]);
@@ -71,9 +71,9 @@ describe('Aplicacion CelFar', () => {
             ' ', '"0"', '0,0', 'hola'
         ]
         examples.forEach((input) => {
-            it('Deberia informar que el valor ingresado no es un valor numerico', async () => {
+            it(`Deberia informar que el valor ingresado \'${input}\' no es un valor numerico`, async () => {
                 await CelFarPage.open();
-                await CelFarPage.convert(input)
+                await CelFarPage.convert(input);
     
                 await expect(await CelFarPage.output.getText()).toBe("El valor ingresado no es un número (recuerde que los decimales deben expresarse con '.' y no con ',')");
             });
@@ -85,7 +85,7 @@ describe('Aplicacion CelFar', () => {
             '1234567', '-123.4567', 
         ]
         examples.forEach((input) => {
-            it('Deberia informar que el valor ingresado no es un valor numerico', async () => {
+            it(`Deberia informar que el valor ingresado \'${input}\' es muy largo`, async () => {
                 await CelFarPage.open();
                 await CelFarPage.convert(input)
     
