@@ -39,14 +39,13 @@ describe('Aplicacion CelFar', () => {
             {'input': "273", 'output': "523.4"},
             {'input': "10", 'output': "50"},
             {'input': "1", 'output': "33.8"},
-            {'input': "1", 'output': "33.8"},
             {'input': "0", 'output': "32"},
             {'input': "-1", 'output': "30.2"},
             {'input': "-10", 'output': "14"},
             {'input': "-273", 'output': "-459.4"},
         ]
 
-        examples.forEach(({input, output }) => { 
+        examples.forEach(({input, output }) => {
             it(`El valor \'${input}\' debería ser convertido a \'${output}\' F`, async () => {
                 await CelFarPage.open();
                 await CelFarPage.convert(input);
@@ -74,7 +73,7 @@ describe('Aplicacion CelFar', () => {
             it(`Deberia informar que el valor ingresado \'${input}\' no es un valor numerico`, async () => {
                 await CelFarPage.open();
                 await CelFarPage.convert(input);
-    
+
                 await expect(await CelFarPage.output.getText()).toBe("El valor ingresado no es un número (recuerde que los decimales deben expresarse con '.' y no con ',')");
             });
         });
@@ -82,13 +81,13 @@ describe('Aplicacion CelFar', () => {
 
     describe('(Valores con más de 6 digitos)', () => {
         examples = [
-            '1234567', '-123.4567', 
+            '1234567', '-123.4567',
         ]
         examples.forEach((input) => {
             it(`Deberia informar que el valor ingresado \'${input}\' es muy largo`, async () => {
                 await CelFarPage.open();
                 await CelFarPage.convert(input)
-    
+
                 await expect(await CelFarPage.output.getText()).toBe("El valor ingresado es muy largo");
             });
         });

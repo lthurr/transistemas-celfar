@@ -1,6 +1,6 @@
 # transistemas-celfar
 
-Este repositorio tiene el objetivo de respaldar el código utilizado en el taller de [Testing de Transistemas](https://transistemas.org), en la clase de **automatización de pruebas de software**. 
+Este repositorio tiene el objetivo de respaldar el código utilizado en el taller de [Testing de Transistemas](https://transistemas.org), en la clase de **automatización de pruebas de software**.
 El objetivo de este repositorio es sumamente educacional.
 
 ## 📃 CelFar especificaciones
@@ -16,10 +16,10 @@ Necesitamos las siguientes 2 cosas
 ### 📚 Versiones usadas
 ```
 node --version
-v15.14.0
+v18.18.2
 
 npm --version
-7.7.6
+9.8.1
 ```
 
 Una vez descargado el repositorio y teniendo instalado node y npm, vamos a abrir una consola
@@ -42,13 +42,13 @@ npm i
 🤔 Explicación:<p>
 `npm -i -g npx`, va a instalarnos un programa que vamos a necesitar para ejecutar nuestros tests<p>
 `npm i`, va a instalarnos todas nuestras dependencias de nuestro repositorio, esas dependencias están declaradas [acá](https://github.com/lthurr/transistemas-celfar/blob/main/package.json)
-  
+
 Ahora, si llegamos hasta acá, podemos ejecutar nuestros casos de prueba
 
 
 ## 📝 Ejecutar los tests
 ```
-$ npx wdio wdio.conf.js 
+$ npx wdio wdio.conf.js
 $ npx wdio wdio.conf.js -v 1
 $ npx wdio wdio.conf.js -v 2
 $ npx wdio wdio.conf.js -v 3
